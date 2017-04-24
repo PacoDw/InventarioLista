@@ -22,6 +22,8 @@ namespace Inventario
         private int _cantiddad;
         public int cantidad { get { return _cantiddad; } }
 
+        private Producto _siguiente;
+        public Producto siguiente { get { return _siguiente; } set { _siguiente = value; } }
         //---------------------------------------------------------------------------------------------------------------------------------------------------------
         //CONSTRUCTOR DE LA CLASE PRODUCTO
         public Producto()
@@ -30,6 +32,7 @@ namespace Inventario
             _nombre = string.Empty;
             _precio = 0.0F;
             _cantiddad = 0;
+            _siguiente = null;
         }
 
         //---------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -58,6 +61,16 @@ namespace Inventario
         public void setCantidad(int cantidad)
         {
             this._cantiddad = cantidad;
+        }
+
+        public override string ToString()
+        {
+            string info = "Código:    " + this.codigo + Environment.NewLine +
+                        "Nombre:    " + this.nombre + Environment.NewLine +
+                        "Precio:    " + this.precio + Environment.NewLine +
+                        "Cantidad:  " + this.cantidad + Environment.NewLine +
+                        " ----------------------------------------------" + Environment.NewLine + Environment.NewLine;
+            return info;
         }
     }
 }

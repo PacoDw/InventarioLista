@@ -18,7 +18,6 @@ namespace Inventario
             InitializeComponent();
 
             //Muesta el numeros de productos existentes
-            lblProcuctosEnAlmacen.Text = "Productos en el almacen: " + inventario.contador + " de 15"; 
         }
 
         //---------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -36,12 +35,6 @@ namespace Inventario
 
             //Se agrega el producto al inventario mediante un metodo que recibe como parametro un producto
             inventario.Agregar(product);
-
-            //Se determina el estado del almacen; si esta lleno o puede seguir agregando
-            estadoAlmacen();
-
-            //Se actualiza la informacion de cuantos procutos hay
-            lblProcuctosEnAlmacen.Text = "Productos en el almacen: " + inventario.contador + " de 15";
             
             //Se limpian las casillas
             txtCodigo.Text = txtNombre.Text = txtPrecio.Text = txtCantidad.Text = String.Empty;
@@ -53,13 +46,6 @@ namespace Inventario
         {
             //Se envia por parametro el codigo del producto que se desea borrar
             inventario.Borrar(Convert.ToInt32(txtCodigo.Text));
-
-            //Se determina si aun se puede agregar mas productos al almacen o inventario, si es asi se habilita el boton de agregar
-            if (inventario.contador < inventario.vecProduct.Length)
-                this.bttonAdd.Enabled = true;
-
-            //Se actualiza la informacion de cuantos productos hay
-            lblProcuctosEnAlmacen.Text = "Productos en el almacen: " + inventario.contador + " de 15";
 
             //Se limpian las casillas
             txtCodigo.Text = txtNombre.Text = txtPrecio.Text = txtCantidad.Text = String.Empty;
@@ -79,13 +65,8 @@ namespace Inventario
             product.setCantidad(Convert.ToInt32(txtCantidad.Text));
 
             //Se inserta el producto especificando como parametro en que posicion
-            inventario.Insertar(product, Convert.ToByte(txtPosicion.Text));
+            //inventario.Insertar(product, Convert.ToByte(txtPosicion.Text));
 
-            //Se determina el estado del almacen
-            estadoAlmacen();
-
-            //Se Actualiza la informacion respecto a cuantos producto hay en el inventario
-            lblProcuctosEnAlmacen.Text = "Productos en el almacen: " + inventario.contador + " de 15";
 
             //Se limpian las casillas
             txtCodigo.Text = txtNombre.Text = txtPrecio.Text = txtCantidad.Text = String.Empty;
@@ -121,19 +102,6 @@ namespace Inventario
         private void bttonReporte_Click(object sender, EventArgs e)
         {
             txtReportes.Text = inventario.Reporte();
-        }
-
-        //---------------------------------------------------------------------------------------------------------------------------------------------------------
-        //METODO ESTADO DE ALMACEN
-        private void estadoAlmacen()
-        {
-            //determina si el contador ha llegado al limite, si es asi se envia un mensaje al usuario y se le informa
-            if (inventario.contador == inventario.vecProduct.Length)
-            {
-                MessageBox.Show("Ya llenaste el almacen, ya no es posible agregar más productos\nNota:Puedes eliminar productos para tener más espacio...",
-                    "Almacen lleno haste el borde", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                this.bttonAdd.Enabled = false;
-            }
         }
     }
 }
