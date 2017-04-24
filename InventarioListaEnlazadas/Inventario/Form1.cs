@@ -65,7 +65,7 @@ namespace Inventario
             product.setCantidad(Convert.ToInt32(txtCantidad.Text));
 
             //Se inserta el producto especificando como parametro en que posicion
-            //inventario.Insertar(product, Convert.ToByte(txtPosicion.Text));
+            inventario.Insertar(product, Convert.ToByte(txtPosicion.Text));
 
 
             //Se limpian las casillas
