@@ -90,12 +90,15 @@ namespace Inventario
         }
         private void Borrar(Producto temp, int codigo)
         {
-            if (temp.siguiente.codigo == codigo)
+            if(temp.siguiente != null)
             {
-                temp.siguiente = temp.siguiente.siguiente;
+                if (temp.siguiente.codigo == codigo)
+                {
+                    temp.siguiente = temp.siguiente.siguiente;
+                }
+                else
+                    Borrar(temp.siguiente, codigo);
             }
-            else
-                Borrar(temp.siguiente, codigo);
         }
 
         //---------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -120,16 +123,20 @@ namespace Inventario
         }
         private void Insertar(Producto nuevo, Producto temp, int posicion, int cont)
         {
-            if (posicion - 1 == cont)
+            if(temp != null)
             {
-                nuevo.siguiente = temp.siguiente;
-                temp.siguiente = nuevo;
+                if (posicion - 1 == cont)
+                {
+                    nuevo.siguiente = temp.siguiente;
+                    temp.siguiente = nuevo;
+                }
+                else
+                {
+                    cont++;
+                    Insertar(nuevo, temp.siguiente, posicion, cont);
+                }
             }
-            else
-            {
-                cont++;
-                Insertar(nuevo, temp.siguiente, posicion, cont);
-            }
+
         }
 
         //---------------------------------------------------------------------------------------------------------------------------------------------------------
