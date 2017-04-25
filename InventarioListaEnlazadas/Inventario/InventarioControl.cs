@@ -58,8 +58,8 @@ namespace Inventario
 
             if (productInicio != null)
             {
-                 temp = productInicio;
-                while(temp != null)
+                temp = productInicio;
+                while (temp != null)
                 {
                     if (temp.codigo == codigo)
                         break;
