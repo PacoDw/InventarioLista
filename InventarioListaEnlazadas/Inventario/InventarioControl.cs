@@ -61,9 +61,8 @@ namespace Inventario
                 temp = productInicio;
                 while (temp != null)
                 {
-                    if (temp.codigo == codigo)
-                        break;
-                    temp = temp.siguiente;
+                    if (temp.codigo != codigo)
+                        temp = temp.siguiente;
                 }
             }
             return temp;
